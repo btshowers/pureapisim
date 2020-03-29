@@ -5,9 +5,9 @@ param($Request, $TriggerMetadata)
 
 # Write to the Azure Functions log stream.
 Write-Host "PowerShell HTTP trigger function processed a request."
+write-host $Request.Query.names
 #key:  2PDoD5iaokKDwGh9uNqt1jpDTNpgshfiOzO643z5ch92Mwycl7veBA==
 # Write to the Azure Functions log stream.
-Write-Host "PowerShell HTTP trigger function processed a request."
 if($Request.Headers."x-auth-token" -eq "52a8163a-803b-475b-9c53-f99f6e7f4c22"){
 
     # Interact with query parameters or the body of the request.

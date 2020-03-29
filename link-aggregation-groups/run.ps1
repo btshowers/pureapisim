@@ -124,6 +124,5 @@ else{
 Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
     headers = @{'content-type'='application\json'}
     StatusCode = $status
-    #Body = $body
     Body = $body
 })

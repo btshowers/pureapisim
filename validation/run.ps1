@@ -9,7 +9,7 @@ Write-Host "PowerShell HTTP trigger function processed a request."
 if($Request.Headers."x-auth-token" -eq "52a8163a-803b-475b-9c53-f99f6e7f4c22"){
 
     $status = [HttpStatusCode]::OK
-    $body = '[“pagination_info":{“total_item_count":1,“continuation_token":null},"items":[{“array_name_configured":true,“dns_configured":true,“smtp_configured":true,“admin_network_configured":true}'
+    $body = '{"items":[{"array_name_configured":true,"dns_configured":true,"smtp_configured":true,"admin_network_configured":true}],"pagination_info":{"continuation_token":null,"total_item_count":1}}'
     
 }
 else{

@@ -10,7 +10,7 @@ if($Request.Headers."x-auth-token" -eq "52a8163a-803b-475b-9c53-f99f6e7f4c22"){
 
     if($Request.Body.setup_completed -eq $true){
         $status = [HttpStatusCode]::OK
-        $body = '"items":[{“array_name_configured":true,“dns_configured":true,“smtp_configured":true,“admin_network_configured":true,“setup_completed":true},]'
+        $body = '{"items":[{"array_name_configured":true,"dns_configured":true,"smtp_configured":true,"admin_network_configured":true,"setup_completed":true}]}'
     }
     else{
         $status = [HttpStatusCode]::BadRequest
