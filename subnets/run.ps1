@@ -37,7 +37,7 @@ if($Request.Headers."x-auth-token" -eq "52a8163a-803b-475b-9c53-f99f6e7f4c22"){
             if($Request.Body.names){$name = $Request.Body.names}elseif($Request.Query.names){$name = $Request.Query.names}else{$name = "subnet_100"}
             if($Request.Body.ids){$id = $Request.Body.ids}else{$id = "787108d5-85ea-1169-a6a7-788d5bc7598b"}
             if($Request.Body.enabled){$enabled = $Request.Body.enabled}else{$enabled = $true}
-            if($Request.Body.link_aggrigation_group.name){$link_aggrigation_group = $Request.Body.link_aggrigation_group.name}else{$link_aggrigation_group = "uplink"}
+            if($Request.Body.link_aggregation_group.name){$link_aggregation_group = $Request.Body.link_aggregation_group.name}else{$link_aggregation_group = "uplink"}
             if($Request.Body.mtu){$mtu = $Request.Body.mtu}else{$mtu = 1500}
             if($Request.Body.prefix){$prefix = $Request.Body.prefix}else{$prefix = "10.255.8.0/24"}
             if($Request.Body.vlan){$vlan = $Request.Body.vlan}else{$vlan = 8}
@@ -52,7 +52,7 @@ if($Request.Headers."x-auth-token" -eq "52a8163a-803b-475b-9c53-f99f6e7f4c22"){
                 }
             }
             #build the json reponse to show that it worked.
-            $body = '{"items":[{"enabled":'+$enabled.toString().toLower()+',"gateway":"'+$gateway+'","id":"'+$id+'","interfaces":[{"id":"88876hhg-123k-8765-8n8n-hunt1234kk87","name":"'+$interfaces+'","resource_type":"network-interfaces"}],"link_aggregation_group":{"id":"563hdy66-jjkd-87uh-33jn-hee84032pp12","name":"'+$link_aggrigation_group+'","resource_type":"link-aggregation-groups"},"mtu":'+$mtu+',"name":"'+$name+'","prefix":"'+$prefix+'","services":['+$services+'],"vlan":'+$vlan+'}],"pagination_info":{"continuation_token":null,"total_item_count":1}}'
+            $body = '{"items":[{"enabled":'+$enabled.toString().toLower()+',"gateway":"'+$gateway+'","id":"'+$id+'","interfaces":[{"id":"88876hhg-123k-8765-8n8n-hunt1234kk87","name":"'+$interfaces+'","resource_type":"network-interfaces"}],"link_aggregation_group":{"id":"563hdy66-jjkd-87uh-33jn-hee84032pp12","name":"'+$link_aggregation_group+'","resource_type":"link-aggregation-groups"},"mtu":'+$mtu+',"name":"'+$name+'","prefix":"'+$prefix+'","services":['+$services+'],"vlan":'+$vlan+'}],"pagination_info":{"continuation_token":null,"total_item_count":1}}'
             
                 
             #else{

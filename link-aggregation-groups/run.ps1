@@ -7,7 +7,7 @@ param($Request, $TriggerMetadata)
 Write-Host "PowerShell HTTP trigger function processed a request."
 #key:  2PDoD5iaokKDwGh9uNqt1jpDTNpgshfiOzO643z5ch92Mwycl7veBA==
 # Write to the Azure Functions log stream.
-Write-Host "PowerShell HTTP trigger function processed a request."
+Write-Host $Request.Body.add_ports.value
 if($Request.Headers."x-auth-token" -eq "52a8163a-803b-475b-9c53-f99f6e7f4c22"){
 
     # Interact with query parameters or the body of the request.
@@ -41,31 +41,42 @@ if($Request.Headers."x-auth-token" -eq "52a8163a-803b-475b-9c53-f99f6e7f4c22"){
             $status1 = "healthy"
             if($Request.Body.remove_ports){
                 $count = 0
-                foreach($s in $Request.Body.remove_ports){$count += 1}
-                for($i = 0; $i -lt $count; $i++){
-                    $ports += '{"name":"'+$Request.Body.remove_ports.name[$i]+'","resource_type":"hardware"}'
-                    if($i -lt ($count -1)){$ports += ','}
+                if($Request.Body.remove_ports.count -gt 1){
+                    foreach($s in $Request.Body.remove_ports){$count += 1}
+                    for($i = 0; $i -lt $count; $i++){
+                        $ports += '{"name":"'+$Request.Body.remove_ports.name[$i]+'","resource_type":"hardware"}'
+                        if($i -lt ($count -1)){$ports += ','}
+                    }
                 }
+                else{$ports = '{"name":"'+$Request.Body.remove_ports.name+'"}'}
                 #build the json reponse to show that it worked.
                 $body = '{"items":[{"id":"'+$id+'","lag_speed":'+$lag_speed+',"mac":"'+$mac+'","name":"'+$name+'","port_speed":'+$port_speed+',"ports":['+$ports+'],"status":"'+$status1+'"}],"pagination_info":{"continuation_token":null,"total_item_count":1}}'
             }
             elseif($Request.Body.add_ports){
                 $count = 0
-                foreach($s in $Request.Body.add_ports){$count += 1}
-                for($i = 0; $i -lt $count; $i++){
-                    $ports += '{"name":"'+$Request.Body.add_ports.name[$i]+$i+'"}'
-                    if($i -lt ($count -1)){$ports += ','}
+                if($Request.Body.add_ports.count -gt 1){
+                    #write-host "ports " $ports2
+                    foreach($s in $Request.Body.add_ports){$count += 1}
+                    for($i = 0; $i -lt $count; $i++){
+                        $ports += '{"name":"'+$Request.Body.add_ports.name[$i]+$i+'"}'
+                        if($i -lt ($count -1)){$ports += ','}
+                    }
                 }
+                else{$ports = '{"name":"'+$Request.Body.add_ports.name+'"}'}
+                write-host "ports " $ports
                 #build the json reponse to show that it worked.
-                $body = '{"items":[{"id":"'+$id+'","lag_speed":'+$lag_speed+',"mac":"'+$mac+'","name":"'+$name+'","port_speed":'+$port_speed+',"ports":'+$ports+',"status":"'+$status1+'"}],"pagination_info":{"continuation_token":null,"total_item_count":1}}'
+                $body = '{"items":[{"id":"'+$id+'","lag_speed":'+$lag_speed+',"mac":"'+$mac+'","name":"'+$name+'","port_speed":'+$port_speed+',"ports":['+$ports+'],"status":"'+$status1+'"}],"pagination_info":{"continuation_token":null,"total_item_count":1}}'
             }
             elseif($Request.Body.ports){
                 $count = 0
-                foreach($s in $Request.Body.ports){$count += 1}
-                for($i = 0; $i -lt $count; $i++){
-                    $ports += '{"name":"'+$Request.Body.ports.name[$i]+'","resource_type":"hardware"}'
-                    if($i -lt ($count -1)){$ports += ','}
+                if($Request.Body.ports.count -gt 1){
+                    foreach($s in $Request.Body.ports){$count += 1}
+                    for($i = 0; $i -lt $count; $i++){
+                        $ports += '{"name":"'+$Request.Body.ports.name[$i]+'","resource_type":"hardware"}'
+                        if($i -lt ($count -1)){$ports += ','}
+                    }
                 }
+                else{$ports = '{"name":"'+$Request.Body.ports.name+'"}'}
                 #build the json reponse to show that it worked.
                 $body = '{"items":[{"id":"'+$id+'","lag_speed":'+$lag_speed+',"mac":"'+$mac+'","name":"'+$name+'","port_speed":'+$port_speed+',"ports":['+$ports+'],"status":"'+$status1+'"}],"pagination_info":{"continuation_token":null,"total_item_count":1}}'
             }
@@ -119,10 +130,11 @@ else{
     $body = "Unauthorized.  Make sure to use the following key and value in your header:`nx-auth-token 52a8163a-803b-475b-9c53-f99f6e7f4c22"
 }
 
-
+write-host $body
 # Associate values to output bindings by calling 'Push-OutputBinding'.
 Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
     headers = @{'content-type'='application\json'}
     StatusCode = $status
     Body = $body
+    
 })
