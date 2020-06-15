@@ -5,7 +5,7 @@ param($Request, $TriggerMetadata)
 #key:  2PDoD5iaokKDwGh9uNqt1jpDTNpgshfiOzO643z5ch92Mwycl7veBA==
 # Write to the Azure Functions log stream.
 Write-Host "PowerShell HTTP trigger function processed a request."
-if($api = $Request.Headers."api-token" -eq "2PDoD5iaokKDwGh9uNqt1jpDTNpgshfiOzO643z5ch92Mwycl7veBA=="){
+if($api = $Request.Headers."api-token" -eq "PUREUSER"){
 
     # Interact with query parameters or the body of the request.
     if($Request.Method -eq "POST"){
@@ -16,7 +16,7 @@ if($api = $Request.Headers."api-token" -eq "2PDoD5iaokKDwGh9uNqt1jpDTNpgshfiOzO6
 }
 else{
     $status = [HttpStatusCode]::Unauthorized
-    $body = "Unauthorized.  Make sure to use the following key and value in your header:`napi-token 2PDoD5iaokKDwGh9uNqt1jpDTNpgshfiOzO643z5ch92Mwycl7veBA=="
+    $body = "Unauthorized.  Make sure to use the following key and value in your header:`napi-token PUREUSER"
     $xAuthToken = ""
 }
 # Associate values to output bindings by calling 'Push-OutputBinding'.
@@ -24,6 +24,7 @@ Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
     headers = @{
         'content-type'='application\json'
         'x-auth-token'= $xAuthToken
+        'Access-Control-Expose-Headers'='x-auth-token'
         }
     StatusCode = $status
     Body = $body

@@ -1,13 +1,14 @@
 ﻿{
   "bindings": [
     {
-      "authLevel": "anonymous",
-      "type": "httpTrigger",
-      "direction": "in",
       "name": "Request",
+      "route": "1.9/setup/validation",
+      "authLevel": "anonymous",
       "methods": [
         "get"
-      ]
+      ],
+      "direction": "in",
+      "type": "httpTrigger"
     },
     {
       "type": "http",

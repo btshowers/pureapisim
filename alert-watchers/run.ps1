@@ -63,7 +63,7 @@ if($Request.Headers."x-auth-token" -eq "52a8163a-803b-475b-9c53-f99f6e7f4c22"){
         if($Request.Query.names){
             if($Request.Body.name){$name = $Request.Body.name}elseif($Request.Query.names){$name = $Request.Query.names}else{$name = "FM1.ETH1"}
                 #build the json reponse to show that it worked.
-                $body = '{"items":[{"enabled": true,"id":"73f29a11-1cd1-45d6-f86f-8a03246ca38e","name":"'+$name+'"}]}'
+                $body = '{"items":[{"enabled": '+$Request.Body.enabled+',"id":"73f29a11-1cd1-45d6-f86f-8a03246ca38e","name":"'+$name+'"}]}'
         }
         else{
             #$ports = '{"name":"CH3.FM1.ETH1","resource_type":"hardware"},{"name":"CH3.FM1.ETH2","resource_type":"hardware"},{"name":"CH3.FM1.ETH3","resource_type":"hardware"},{"name":"CH3.FM1.ETH4","resource_type":"hardware"'

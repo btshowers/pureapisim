@@ -13,13 +13,13 @@ if($Request.Headers."x-auth-token" -eq "52a8163a-803b-475b-9c53-f99f6e7f4c22"){
     # Interact with query parameters or the body of the request.
     if($Request.Method -eq "GET"){
         $status = [HttpStatusCode]::OK
-        $body = '{"items":[{"_as_of":"1551226695696","id":"00000000-0000-4000-8000-000000000000","name":"array_01","ntp_servers":["time.ntp.org"],"os":"Purity//FB","revision":"2019.01.31_280cf546","time_zone":"America/Los_Angeles","version":"2.3.4"}],"pagination_info":{"continuation_token":null,"total_item_count":1}}'
+        $body = '{"items":[{"name":"array_01","ntp_servers":["time.ntp.org"],"os":"Purity//FB","revision":"2019.01.31_280cf546","time_zone":"America/Los_Angeles","version":"2.3.4"}],"pagination_info":{"continuation_token":null,"total_item_count":1}}'
     }
     if($Request.Method -eq "PATCH"){
         $status = [HttpStatusCode]::OK
         #extract response to variables.
         $name = $Request.Body.name
-        $timezone = "America/Los_Angeles"
+        $timezone = $Request.Body.time_zone
         #get ntp_servers in an array
         $count = 0
         foreach($ntpserver in $Request.Body.ntp_servers){$count += 1}
@@ -28,7 +28,7 @@ if($Request.Headers."x-auth-token" -eq "52a8163a-803b-475b-9c53-f99f6e7f4c22"){
             if($i -lt ($count -1)){$ntp_servers += ','}
         }   
         #build the json reponse to show that it worked.
-        $body = '{"name":"'+$name+'","ntp_servers":['+$ntp_servers+',],"Time_zone":"'+$timezone+'",}'
+        $body = '{"items":[{"name":"'+$name+'","ntp_servers":['+$ntp_servers+',],"time_zone":"'+$timezone+'",}]}'
     }
 }
 else{

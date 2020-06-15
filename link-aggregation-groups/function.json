@@ -1,16 +1,17 @@
 ﻿{
   "bindings": [
     {
-      "authLevel": "anonymous",
-      "type": "httpTrigger",
-      "direction": "in",
       "name": "Request",
+      "route": "1.9/link-aggregation-groups",
+      "authLevel": "anonymous",
       "methods": [
         "get",
         "post",
         "patch",
         "delete"
-      ]
+      ],
+      "direction": "in",
+      "type": "httpTrigger"
     },
     {
       "type": "http",

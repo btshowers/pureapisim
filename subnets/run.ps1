@@ -40,7 +40,8 @@ if($Request.Headers."x-auth-token" -eq "52a8163a-803b-475b-9c53-f99f6e7f4c22"){
             if($Request.Body.link_aggregation_group.name){$link_aggregation_group = $Request.Body.link_aggregation_group.name}else{$link_aggregation_group = "uplink"}
             if($Request.Body.mtu){$mtu = $Request.Body.mtu}else{$mtu = 1500}
             if($Request.Body.prefix){$prefix = $Request.Body.prefix}else{$prefix = "10.255.8.0/24"}
-            if($Request.Body.vlan){$vlan = $Request.Body.vlan}else{$vlan = 8}
+            #if($Request.Body.vlan){$vlan = $Request.Body.vlan}else{$vlan = 8}
+            $vlan = $Request.Body.vlan
             if($Request.Body.gateway){$gateway = $Request.Body.gateway}else{$gateway = "10.255.8.1"}
             if($Request.Body.interfaces.name){$interface = $Request.Body.interfaces.name}else{$interfaces = "10.255.8.1"}
             if($Request.Body.services){

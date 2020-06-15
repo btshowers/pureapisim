@@ -43,6 +43,7 @@ if($Request.Method -eq "PATCH"){
       
     
     $body = '{"status": "initializing","array_id": "","ct0.eth0": {"netmask": "'+$Request.Body."ct0.eth0".netmask+'","address": "'+$Request.Body."ct0.eth0".address+'","gateway": "'+$Request.Body."ct0.eth0".gateway+'","mac_address": "24:a9:37:00:34:33"},"smtp": {"relay_host": "'+$Request.Body.smtp.relay_host+'","sender_domain": "'+$Request.Body.smtp.sender_domain+'"},"vir0": {"netmask": "'+$Request.Body.vir0.netmask+'","address": "'+$Request.Body.vir0.address+'","gateway": "'+$Request.Body.vir0.gateway+'","mac_address": "24:a9:37:00:34:36"},"alert_emails": ['+$alert_emails+'],"ct1.eth0": {"netmask": "'+$Request.Body."ct1.eth0".netmask+'","gateway": "'+$Request.Body."ct1.eth0".gateway+'","address": "'+$Request.Body."ct1.eth0".address+'"},"ntp_servers": ['+$ntp_servers+'],"version": "5.2.4","eula_acceptance": {"accepted_by": {"organization": "'+$Request.Body.eula_acceptance.accepted_by.organization+'","full_name":  "'+$Request.Body.eula_acceptance.accepted_by.full_name+'","job_title": "'+$Request.Body.eula_acceptance.accepted_by.job_title+'"},"accepted": '+$Request.Body.eula_acceptance.accepted.toString().toLower()+'},"progress": 0.01,"dns": {"nameservers": ['+$dns_servers+'],"domain": "'+$Request.Body.dns.domain+'"},"timezone": "'+$Request.Body.timezone+'","serial_number": "PCHFL17320104","os": "Purity//FA","array_name": "'+$Request.Body.array_name+'"}'
+    write-host $body
 }
 
 

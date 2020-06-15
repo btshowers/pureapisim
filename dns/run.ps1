@@ -37,7 +37,7 @@ if($Request.Headers."x-auth-token" -eq "52a8163a-803b-475b-9c53-f99f6e7f4c22"){
             if($i -lt ($count -1)){$nameservers += ','}
         }   
         #build the json reponse to show that it worked.
-        $body = '{"domain":"'+$domain+'","nameservers":['+$nameservers+'],"search":['+$search+'],"pagination_info":{"continuation_token":null,"total_item_count":1}}'
+        $body = '{"items":[{"domain":"'+$domain+'","nameservers":['+$nameservers+'],"search":['+$search+'],"pagination_info":{"continuation_token":null,"total_item_count":1}}]}'
     }
 }
 else{

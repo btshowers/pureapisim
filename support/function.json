@@ -1,14 +1,15 @@
 ﻿{
   "bindings": [
     {
-      "authLevel": "anonymous",
-      "type": "httpTrigger",
-      "direction": "in",
       "name": "Request",
+      "route": "1.9/support",
+      "authLevel": "anonymous",
       "methods": [
         "get",
         "patch"
-      ]
+      ],
+      "direction": "in",
+      "type": "httpTrigger"
     },
     {
       "type": "http",

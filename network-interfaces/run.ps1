@@ -25,6 +25,7 @@ if($Request.Headers."x-auth-token" -eq "52a8163a-803b-475b-9c53-f99f6e7f4c22"){
             $body = '{"items":[{"address":"'+$address+'","enabled":true,"gateway":"10.255.8.1","id":"d0eef7af-af94-7647-5f8e-af34895d1fed","mtu":1500,"name":"'+$name+'","netmask":"255.255.255.0","services":["Data"],"subnet":{"name":"net1","resource_type":"subnets"},"type":"'+$type+'","vlan":8}]}'
         }
         else{
+            $status = [HttpStatusCode]::BadRequest
             $body = "you must provide a names as aURI query parameter."
         }
     }

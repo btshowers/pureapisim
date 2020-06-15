@@ -1,16 +1,17 @@
 ﻿{
   "bindings": [
     {
-      "authLevel": "anonymous",
-      "type": "httpTrigger",
-      "direction": "in",
       "name": "Request",
+      "route": "1.9/alert-watchers",
+      "authLevel": "anonymous",
       "methods": [
         "get",
         "post",
         "delete",
         "patch"
-      ]
+      ],
+      "direction": "in",
+      "type": "httpTrigger"
     },
     {
       "type": "http",

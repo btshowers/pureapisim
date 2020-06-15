@@ -1,15 +1,16 @@
 ﻿{
   "bindings": [
     {
-      "authLevel": "anonymous",
-      "type": "httpTrigger",
-      "direction": "in",
       "name": "Request",
+      "route": "1.9/hardware-connectors",
+      "authLevel": "anonymous",
       "methods": [
         "get",
         "post",
         "patch"
-      ]
+      ],
+      "direction": "in",
+      "type": "httpTrigger"
     },
     {
       "type": "http",
